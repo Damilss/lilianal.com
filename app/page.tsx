@@ -1,65 +1,90 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* Hero */}
+      <section className="border-b border-neutral-800">
+        <div className="mx-auto grid max-w-5xl gap-10 px-6 py-16 md:grid-cols-2 md:items-center">
+          <div>
+            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
+              Buy and sell with a local expert.
+            </h1>
+            <p className="mt-4 text-neutral-400">
+              Personalized guidance, strong negotiation, and a smooth process from first tour to closing.
+            </p>
+
+            <div className="mt-6 flex gap-3">
+              <Link
+                href="/contact"
+                className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:opacity-90"
+              >
+                Book a consultation
+              </Link>
+              <Link
+                href="/services"
+                className="rounded-lg border border-neutral-700 px-4 py-2 text-sm font-medium hover:bg-neutral-900"
+              >
+                View services
+              </Link>
+            </div>
+
+            <div className="mt-6 flex gap-6 text-sm text-neutral-400">
+              <div>
+                <div className="text-white font-medium">10+ yrs</div>
+                <div>Experience</div>
+              </div>
+              <div>
+                <div className="text-white font-medium">Top 5%</div>
+                <div>Local volume</div>
+              </div>
+              <div>
+                <div className="text-white font-medium">5★</div>
+                <div>Client reviews</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Placeholder “image” card */}
+          <div className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6">
+            <div className="h-56 w-full rounded-xl border border-neutral-800 bg-neutral-900" />
+            <p className="mt-4 text-sm text-neutral-400">
+              Add an agent photo or a neighborhood photo here later.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services preview */}
+      <section>
+        <div className="mx-auto max-w-5xl px-6 py-14">
+          <h2 className="text-2xl font-semibold">How I help</h2>
+          <p className="mt-2 text-neutral-400">
+            Clear strategy and hands-on support at every step.
           </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {[
+              { title: "Buyers", desc: "Search strategy, tours, offers, and negotiation." },
+              { title: "Sellers", desc: "Pricing, staging guidance, marketing, and showings." },
+              { title: "Relocation", desc: "Neighborhood guidance and local vendor network." },
+            ].map((card) => (
+              <div key={card.title} className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6">
+                <h3 className="font-medium">{card.title}</h3>
+                <p className="mt-2 text-sm text-neutral-400">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <Link href="/contact" className="text-sm font-medium underline underline-offset-4">
+              Contact me →
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
+
+
