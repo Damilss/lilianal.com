@@ -17,7 +17,9 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
+    } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+  });
 
   async function onSubmit(values: FormValues) {
     // Next step: send to /api/contact
@@ -26,37 +28,32 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto mt-12 max-w-6xl space-y-10">
       <div>
-        <label className="text-sm font-medium">Name</label>
         <input
           {...register("name")}
-          className="mt-1 w-full rounded-lg border border-neutral-800 bg-black p-3 text-sm"
-          placeholder="Jane Doe"
+          className="w-full rounded-md border border-neutral-200 bg-black px-7 py-8 text-4xl text-white placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none"
+          placeholder="Name"
         />
-        {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>}
+        {errors.name && <p className="mt-2 text-lg text-red-400">{errors.name.message}</p>}
       </div>
 
       <div>
-        <label className="text-sm font-medium">Email</label>
         <input
           {...register("email")}
-          className="mt-1 w-full rounded-lg border border-neutral-800 bg-black p-3 text-sm"
-          placeholder="jane@email.com"
+          className="w-full rounded-md border border-neutral-200 bg-black px-7 py-8 text-4xl text-white placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none"
+          placeholder="Email*"
         />
-        {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>}
-      </div>
+{errors.email && <p className="mt-2 text-lg text-red-400">{errors.email.message}</p>}      </div>
 
       <div>
-        <label className="text-sm font-medium">Message</label>
         <textarea
           {...register("message")}
-          className="mt-1 min-h-[140px] w-full rounded-lg border border-neutral-800 bg-black p-3 text-sm"
-          placeholder="I’m looking to buy/sell in..."
+          className="min-h-[320px] w-full rounded-md border border-neutral-200 bg-black px-7 py-8 text-4xl text-white placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none"
+          placeholder="Message"
         />
-        {errors.message && <p className="mt-1 text-sm text-red-400">{errors.message.message}</p>}
+        {errors.message && <p className="mt-2 text-lg text-red-400">{errors.message.message}</p>}
       </div>
-
       <button
         type="submit"
         disabled={isSubmitting}
