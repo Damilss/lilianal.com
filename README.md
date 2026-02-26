@@ -26,20 +26,42 @@ These are placeholders and may change:
 
 ## Tech Stack
 
-Not chosen yet. This section will be updated once the implementation begins.
 
 - **Language:** Typescript + Tailwind CSS
 - **Framework:** Next.js 
 - **Dependencies:** React + Next.js  
-- **Hosting/Deployment:** Vercel 
+- **Hosting/Deployment:** Vercel + Cloudflare domains
 
 ## Repository Structure
 
-Not finalized yet. Expected to be updated once development starts.
+.
+├── app/                     # Next.js App Router directory
+│   ├── contact/             # Contact page route
+│   ├── favicon.ico          # Site favicon
+│   ├── globals.css          # Global styles
+│   ├── layout.tsx           # Root layout component
+│   ├── not-found.tsx        # Custom 404 page
+│   └── page.tsx             # Home page
+│
+├── components/              # Reusable React components
+├── public/                  # Static assets (images, etc.)
+│
+├── .next/                   # Build output (auto-generated)
+├── node_modules/            # Dependencies (auto-generated)
+│
+├── .gitignore               # Git ignore rules
+├── eslint.config.mjs        # ESLint configuration
+├── next-env.d.ts            # Next.js TypeScript types
+├── next.config.ts           # Next.js configuration
+├── postcss.config.mjs       # PostCSS configuration
+├── tsconfig.json            # TypeScript configuration
+├── package.json             # Project metadata and scripts
+├── package-lock.json        # Dependency lock file
+└── README.md                # Project documentation
 
 ## License
 
-See `LICENSE.md`.
+ - MIT Licsense. See `LICENSE.md`.
 
 ## Notes
 
@@ -72,12 +94,3 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
