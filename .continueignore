@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Build output
+dist/
+web-build/
+build/
+out/
+
+# Metro / tooling cache
+.cache/
+metro-cache/
+.babel-cache/
+.eslintcache
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Firebase local emulators
+.firebase/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+
+# Optional: ignore large media files (remove if needed)
+*.mp4
+*.mov
+*.zip
+*.tar
+*.gz
