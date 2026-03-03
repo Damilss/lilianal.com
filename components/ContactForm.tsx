@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,54 +14,85 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 export default function ContactForm() {
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
-    } = useForm<FormValues>({
+  } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
   });
 
   async function onSubmit(values: FormValues) {
-    // Next step: send to /api/contact
-    console.log(values);
-    alert("Form submitted (next step: send email).");
+    void values;
+    setSubmitMessage(null);
+    await new Promise((resolve) => setTimeout(resolve, 450));
+    reset();
+    setSubmitMessage("Thanks for reaching out. Your message was received and the next step is a follow-up response.");
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto mt-12 max-w-6xl space-y-10">
-      <div>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+      <div className="space-y-2">
+        <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
+          Name
+        </label>
         <input
+          id="name"
           {...register("name")}
-          className="w-full rounded-md border border-neutral-200 bg-black px-7 py-8 text-4xl text-white placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none"
-          placeholder="Name"
+          className="w-full rounded-2xl border border-brand-border bg-brand-soft px-5 py-3 text-base text-brand-text outline-none transition focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+          placeholder="Your name"
+          autoComplete="name"
         />
-        {errors.name && <p className="mt-2 text-lg text-red-400">{errors.name.message}</p>}
+        {errors.name ? <p className="text-sm text-red-600">{errors.name.message}</p> : null}
       </div>
 
-      <div>
+      <div className="space-y-2">
+        <label htmlFor="email" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
+          Email
+        </label>
         <input
+          id="email"
+          type="email"
           {...register("email")}
-          className="w-full rounded-md border border-neutral-200 bg-black px-7 py-8 text-4xl text-white placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none"
-          placeholder="Email*"
+          className="w-full rounded-2xl border border-brand-border bg-brand-soft px-5 py-3 text-base text-brand-text outline-none transition focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+          placeholder="you@example.com"
+          autoComplete="email"
         />
-{errors.email && <p className="mt-2 text-lg text-red-400">{errors.email.message}</p>}      </div>
-
-      <div>
-        <textarea
-          {...register("message")}
-          className="min-h-[320px] w-full rounded-md border border-neutral-200 bg-black px-7 py-8 text-4xl text-white placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none"
-          placeholder="Message"
-        />
-        {errors.message && <p className="mt-2 text-lg text-red-400">{errors.message.message}</p>}
+        {errors.email ? <p className="text-sm text-red-600">{errors.email.message}</p> : null}
       </div>
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-lg bg-white px-4 py-2 text-sm font-medium text-black hover:opacity-90 disabled:opacity-60"
-      >
-        {isSubmitting ? "Sending..." : "Send message"}
-      </button>
+
+      <div className="space-y-2">
+        <label htmlFor="message" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
+          Message
+        </label>
+        <textarea
+          id="message"
+          {...register("message")}
+          rows={8}
+          className="w-full rounded-2xl border border-brand-border bg-brand-soft px-5 py-3 text-base text-brand-text outline-none transition focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20"
+          placeholder="Tell me about your goals, timeline, and property type."
+        />
+        {errors.message ? <p className="text-sm text-red-600">{errors.message.message}</p> : null}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-3">
+        <button type="submit" disabled={isSubmitting} className="cta-primary disabled:cursor-not-allowed disabled:opacity-70">
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </button>
+        <p className="text-xs uppercase tracking-[0.14em] text-brand-muted">No backend delivery yet. UI flow only.</p>
+      </div>
+
+      <p aria-live="polite" className="min-h-6 text-sm font-medium text-brand-accent">
+        {submitMessage}
+      </p>
     </form>
   );
 }

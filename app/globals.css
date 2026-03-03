@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-base: #f4eee4;
+  --bg-soft: #fbf7f1;
+  --surface-1: #f7f1e8;
+  --surface-2: #fdfaf5;
+  --text-main: #2e2922;
+  --text-muted: #6f6556;
+  --border-subtle: #d9cdbb;
+  --accent: #a36a42;
+  --accent-strong: #7f4d2f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-main);
+  --color-brand-bg: var(--bg-base);
+  --color-brand-soft: var(--bg-soft);
+  --color-brand-surface: var(--surface-1);
+  --color-brand-card: var(--surface-2);
+  --color-brand-text: var(--text-main);
+  --color-brand-muted: var(--text-muted);
+  --color-brand-border: var(--border-subtle);
+  --color-brand-accent: var(--accent);
+  --color-brand-accent-strong: var(--accent-strong);
+  --font-sans: var(--font-manrope);
+  --font-serif: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(222, 194, 164, 0.34), transparent 42%),
+    radial-gradient(circle at 78% 0%, rgba(184, 148, 113, 0.26), transparent 46%),
+    var(--bg-base);
+  color: var(--text-main);
+  font-family: var(--font-manrope), "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  }
+
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.24em] text-brand-muted;
+  }
+
+  .card-shell {
+    @apply rounded-3xl border border-brand-border bg-brand-card/85 shadow-[0_25px_68px_-52px_rgba(44,38,31,0.95)];
+  }
+
+  .cta-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-brand-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-accent-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent-strong focus-visible:ring-offset-2 focus-visible:ring-offset-brand-soft;
+  }
+
+  .cta-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-brand-border bg-brand-soft px-6 py-3 text-sm font-semibold text-brand-text transition hover:border-brand-accent hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-soft;
+  }
 }
