@@ -22,7 +22,6 @@ export default function ScrollReveal({
   amount = 0.22,
   once = true,
 }: ScrollRevealProps) {
-  const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
