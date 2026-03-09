@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
+import MortgageCalculator from "@/components/MortgageCalculator";
 
 const audiences = [
   {
@@ -142,7 +143,7 @@ export default function Home() {
 
           <ScrollReveal delay={0.18}>
             <div>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/5] w-[420px] md:w-[520px] overflow-hidden rounded-2xl">
                 <Image
                   src="/DSC_0396.JPG"
                   alt="Liliana Ledesma at a home exterior in the Bay Area."
@@ -290,6 +291,14 @@ export default function Home() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section id="calculator" className="section-spacing scroll-mt-28 border-b border-brand-border/70">
+        <div className="section-shell">
+          <ScrollReveal>
+            <MortgageCalculator />
+          </ScrollReveal>
         </div>
       </section>
 
