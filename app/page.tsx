@@ -141,7 +141,7 @@ export default function Home() {
           </div>
 
           <ScrollReveal delay={0.18}>
-            <div className="card-shell p-4 md:p-5">
+            <div>
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
                 <Image
                   src="/DSC_0396.JPG"
