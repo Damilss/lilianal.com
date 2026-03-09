@@ -24,10 +24,6 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
     <motion.div
       className={className}
