@@ -29,7 +29,7 @@ These are placeholders and may change:
 
 - **Language:** Typescript + Tailwind CSS
 - **Framework:** Next.js 
-- **Dependencies:** React + Next.js  
+- **Dependencies:** React + Next.js + framer-motion
 - **Hosting/Deployment:** Vercel + Cloudflare domains
 
 ## Repository Structure
