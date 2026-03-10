@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import RotatingTextBadge from "@/components/RotatingTextBadge";
 import ScrollReveal from "@/components/ScrollReveal";
 import MortgageCalculator from "@/components/MortgageCalculator";
 
@@ -305,26 +306,30 @@ export default function Home() {
       <section id="contact" className="section-spacing scroll-mt-28">
         <div id="contact-cta" className="section-shell">
           <ScrollReveal>
-            <div className="card-shell overflow-hidden p-8 md:p-12">
-              <p className="eyebrow">Next Step</p>
-              <h2 className="mt-3 max-w-3xl text-4xl md:text-6xl">Book your consultation and get a strategy tailored to your goals.</h2>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-muted">
-                Use the contact page to share your timeline, property goals, and financing questions. You will receive a
-                clear response with practical next actions.
-              </p>
+            <div className="relative isolate pt-20 md:pt-24">
+              <RotatingTextBadge className="absolute top-0 right-3 z-10 md:right-6" size={138} />
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/contact" className="cta-primary">
-                  Go to Contact Form
-                </Link>
-                <Link href="/services" className="cta-secondary">
-                  Review Service Details
-                </Link>
+              <div className="card-shell overflow-hidden p-8 md:p-12">
+                <p className="eyebrow">Next Step</p>
+                <h2 className="mt-3 max-w-3xl text-4xl md:text-6xl">Book your consultation and get a strategy tailored to your goals.</h2>
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-muted">
+                  Use the contact page to share your timeline, property goals, and financing questions. You will receive a
+                  clear response with practical next actions.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href="/contact" className="cta-primary">
+                    Go to Contact Form
+                  </Link>
+                  <Link href="/services" className="cta-secondary">
+                    Review Service Details
+                  </Link>
+                </div>
+
+                <p className="mt-8 text-sm uppercase tracking-[0.16em] text-brand-muted">
+                  Frontend contact flow active now - backend delivery integration planned next phase
+                </p>
               </div>
-
-              <p className="mt-8 text-sm uppercase tracking-[0.16em] text-brand-muted">
-                Frontend contact flow active now - backend delivery integration planned next phase
-              </p>
             </div>
           </ScrollReveal>
         </div>

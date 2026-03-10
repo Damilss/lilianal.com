@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RotatingTextBadge from "@/components/RotatingTextBadge";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const mortgageServices = [
@@ -124,22 +125,26 @@ export default function ServicesPage() {
       <section className="section-spacing">
         <div className="section-shell">
           <ScrollReveal>
-            <div className="card-shell p-7 md:flex md:items-center md:justify-between md:gap-8 md:p-10">
-              <div>
-                <p className="eyebrow">Ready to Start</p>
-                <h2 className="mt-2 text-4xl md:text-5xl">Book a consultation to define your next move.</h2>
-                <p className="mt-3 max-w-2xl text-brand-muted">
-                  Share your timeline, priorities, and financing goals. You will get a focused strategy tailored to your
-                  current stage.
-                </p>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-3 md:mt-0 md:shrink-0">
-                <Link href="/contact" className="cta-primary">
-                  Contact Now
-                </Link>
-                <Link href="/#services" className="cta-secondary">
-                  Back to Home
-                </Link>
+            <div className="relative isolate pt-[4.5rem] md:pt-[5.5rem]">
+              <RotatingTextBadge className="absolute top-0 right-3 z-10 md:right-6" size={128} />
+
+              <div className="card-shell p-7 md:flex md:items-center md:justify-between md:gap-8 md:p-10">
+                <div>
+                  <p className="eyebrow">Ready to Start</p>
+                  <h2 className="mt-2 text-4xl md:text-5xl">Book a consultation to define your next move.</h2>
+                  <p className="mt-3 max-w-2xl text-brand-muted">
+                    Share your timeline, priorities, and financing goals. You will get a focused strategy tailored to your
+                    current stage.
+                  </p>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-3 md:mt-0 md:shrink-0">
+                  <Link href="/contact" className="cta-primary">
+                    Contact Now
+                  </Link>
+                  <Link href="/#services" className="cta-secondary">
+                    Back to Home
+                  </Link>
+                </div>
               </div>
             </div>
           </ScrollReveal>
