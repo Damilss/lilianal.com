@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Particles from "@tsparticles/react";
 
 const schema = z.object({
   name: z.string().min(2, "Please enter your name."),
@@ -15,6 +16,8 @@ type FormValues = z.infer<typeof schema>;
 
 export default function ContactForm() {
   const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const particlesRef = useRef<any>(null);
 
   const {
     register,
@@ -33,13 +36,95 @@ export default function ContactForm() {
   async function onSubmit(values: FormValues) {
     void values;
     setSubmitMessage(null);
+    
+    // Trigger confetti animation
+    setShowConfetti(true);
+    
     await new Promise((resolve) => setTimeout(resolve, 450));
     reset();
     setSubmitMessage("Thanks for reaching out. Your message was received and the next step is a follow-up response.");
+    
+    // Hide confetti after animation completes
+    setTimeout(() => setShowConfetti(false), 2000);
   }
 
+
+
+  const confettiConfig = {
+    emitters: {
+      position: {
+        x: 50,
+        y: 50,
+      },
+      rate: {
+        delay: 0.15,
+        quantity: 5,
+      },
+    },
+    particles: {
+      color: {
+        value: ["#ff6b6b", "#4ecdc4", "#45b7d1", "#f9ca24", "#6c5ce7"],
+      },
+      move: {
+        direction: "top" as const,
+        enable: true,
+        speed: {
+          min: 4,
+          max: 8,
+        },
+        random: true,
+        straight: false,
+        outModes: {
+          default: "out" as const,
+        },
+      },
+      number: {
+        value: 0,
+      },
+      opacity: {
+        value: {
+          min: 0.5,
+          max: 1,
+        },
+      },
+      rotate: {
+        value: {
+          min: 0,
+          max: 360,
+        },
+        direction: "random" as const,
+        animation: {
+          enable: true,
+          speed: 6,
+        },
+      },
+      shape: {
+        type: "circle",
+      },
+      size: {
+        value: {
+          min: 3,
+          max: 8,
+        },
+      },
+      life: {
+        duration: {
+          sync: true,
+          value: 2,
+        },
+      },
+    },
+  };
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+    <>
+      {showConfetti && (
+        <Particles
+          id="confetti"
+          options={confettiConfig as any}
+        />
+      )}
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       <div className="space-y-2">
         <label htmlFor="name" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-muted">
           Name
@@ -94,5 +179,6 @@ export default function ContactForm() {
         {submitMessage}
       </p>
     </form>
+    </>
   );
 }
